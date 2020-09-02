@@ -104,8 +104,8 @@ The server responds to that request with an HTTP response message. Within the re
 # Create a function named list10 which creates a list counting from 1 to 10 within `list10.html` 
 # and assign to the route of ('/list10')
 
-# Create a function named evens which show the even numbers from 1 to 10 within `evens.html` 
-# and assign to the route of ('/evens')
+Create a function named evens which show the even numbers from 1 to 10 within `evens.html` 
+and assign to the route of ('/evens')
 
 # Add a statement to run the Flask application which can be reached from any host on port 80.
 ```

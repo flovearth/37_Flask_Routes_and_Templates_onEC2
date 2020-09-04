@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template creates an EC2 instance to run a static website application deployed with Apache Web Server
+Resources:
+  BarisCFInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-02354e95b39ca8dec
+      InstanceType: t2.micro
+      KeyName: baris
+      SecurityGroups:
+        - baris-cdemo-sg
+      Tags:
+        - Key: Name
+          Value: baris-cf-instance-flask
+      UserData: 
+        Fn::Base64:
+          !Sub |
+            #! /bin/bash
+            yum update -y
+            yum install python3 -y
+            pip3 install flask
+            wget https://raw.githubusercontent.com/yurttav/aws_workshops/master/python/hands-on/flask-02-handling-routes-and-templates-on-ec2-linux2/app.py           
+            mkdir templates
+            cd templates
+            wget https://raw.githubusercontent.com/yurttav/aws_workshops/master/python/hands-on/flask-02-handling-routes-and-templates-on-ec2-linux2/templates/evens.html
+            wget https://raw.githubusercontent.com/yurttav/aws_workshops/master/python/hands-on/flask-02-handling-routes-and-templates-on-ec2-linux2/templates/index.html
+            wget https://raw.githubusercontent.com/yurttav/aws_workshops/master/python/hands-on/flask-02-handling-routes-and-templates-on-ec2-linux2/templates/greet.html
+            wget https://raw.githubusercontent.com/yurttav/aws_workshops/master/python/hands-on/flask-02-handling-routes-and-templates-on-ec2-linux2/templates/list.html
+            cd ..
+            python3 app.py

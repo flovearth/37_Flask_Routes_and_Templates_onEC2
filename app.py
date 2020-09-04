@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'This is home page for no path, <h1> Welcome Home</h1>'
+    return 'This is home page for no path, <h1> Welcome Home</h1> <br>The purpose of this web site is: Handling Routes and Templates with Flask Web Application</br>'
 
 @app.route('/about')
 def about():
@@ -16,41 +16,40 @@ def error():
 
 @app.route('/hello')
 def hello():
-    return '<h1>Hello, World! </h1>'
+    return '<h1>Hello, World! </h1> <br>This is hello world page.</br>'
 
 @app.route('/admin')
 def admin():
-    return redirect(url_for('error'))
-
-# @app.route('/<name>')
-# def greet(name):
-#     return f'Hello, {name}'
-
-# @app.route('/<name>')
-# def greet(name):
-#     greet_format=f"""
-# <!DOCTYPE html>
-# <html>
-# <head>
-#     <title>Greeting Page</title>
-# </head>
-# <body>
-#     <h1>Hello, { name }!</h1>
-#     <h1>Welcome to my Greeting Page</h1>
-# </body>
-# </html>
-#     """
-#     return greet_format
-
-@app.route('/greet-admin')
-def greet_admin():
-    return redirect(url_for('greet', name = 'Master Admin!!!!'))
-
+    return redirect(url_for('error'))  # it redirects to another page.
 
 @app.route('/<name>')
 def greet(name):
-    return render_template('greet.html', isim = name)
+    return render_template('greet.html', guest = name)
 
+@app.route('/hello/<name>')
+def helloname(name):
+    return f'<h1> Hello, {name} </h1> <br> You are very curious...</br>'
+
+@app.route('/greet')
+def greet_admin():
+    return redirect(url_for('helloname', name = 'Master Admin!!!!'))
+
+@app.route('/greet/<name>')
+def greetingpage(name):
+    greet_format=f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting HTML Page</title>
+</head>
+<body>
+    <h1>Hello, { name }!</h1>
+    <h1>Welcome to my Greeting Page</h1>
+    This is created via inside HTML codes...
+</body>
+</html>
+    """
+    return greet_format
 
 @app.route('/list100')
 def list10():

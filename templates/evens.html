@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Even Numbers</title>
+    <title>Even Numbers (FOR and IF used)</title>
 </head>
 <body>
 <ul>
 
-    {% for x in range(1, 11) %}
-    <li> List item: {{x}}</li>
+    {% for x in range(1, 21) %}
+    <!-- <li> List item: {{x}}</li> -->
          {% if x % 2 == 0 %}
-        <li>Number {{ x }} is even</li>
+        <h2><li>Number {{ x }} is even</li></h2>
         {% endif %}
 
     {% endfor %}
